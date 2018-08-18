@@ -3,19 +3,17 @@ import pandas as pd
 
 
 @execution_time
-def super_pandas_reader(path, chunkSize=10000):
-    reader = pd.read_csv(path, iterator=True)
-    loop =True
+def reader_pandas_(file, chunkSize=10000):
+    reader = pd.read_csv(file, iterator=True)
     chunks =[]
-    while loop:
+    while 1:
         try:
             chunk = reader.get_chunk(chunkSize)
             chunks.append(chunk)
         except StopIteration:
-            loop =False
-            print("Reading ...\n")
-    df =pd.concat(chunks, ignore_index=True)
-    return df
+            break
+    return pd.concat(chunks, ignore_index=True)
+
 
 def execution_time(func):
     def wrapper(*args, **kwargs):
