@@ -3,7 +3,7 @@ import pandas as pd
 
 
 @execution_time
-def reader_pandas_(file, chunkSize=10000):
+def reader_pandas(file, chunkSize=10000):
     reader = pd.read_csv(file, iterator=True)
     chunks =[]
     while 1:
